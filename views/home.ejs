@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #eef1f7;
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .container {
+        width: 450px;
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        font-size: 26px;
+        color: #333;
+        font-weight: 600;
+      }
+
+      form input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        margin-bottom: 15px;
+        transition: 0.3s;
+      }
+
+      form input:focus {
+        outline: none;
+        border-color: #4a5bd3;
+        box-shadow: 0 0 5px rgba(74, 91, 211, 0.4);
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        background: #4a5bd3;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #3746b0;
+      }
+
+      .result {
+        margin-top: 25px;
+        text-align: left;
+      }
+
+      .result p {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .result a {
+        font-size: 15px;
+        color: #4a5bd3;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      table {
+        width: 100%;
+        margin-top: 15px;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 8px;
+      }
+
+      th,
+      td {
+        padding: 10px 12px;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+      }
+
+      th {
+        background: #4a5bd3;
+        color: white;
+        font-weight: 600;
+      }
+
+      tr:hover {
+        background: #f2f3fc;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>URL Shortener</h2>
+
+      <!-- Form -->
+      <form action="/" method="POST">
+        <input
+          type="text"
+          name="url"
+          placeholder="Enter a long URL..."
+          required
+        />
+        <button type="submit">Shorten URL</button>
+      </form>
+
+      <!-- Show Short URL -->
+      <% if(locals.shortId){ %>
+      <div class="result">
+        <p>Your Short URL:</p>
+        <a href="/<%= shortId %>" target="_blank">
+          http://localhost:8001/<%= shortId %>
+        </a>
+      </div>
+      <% } %>
+
+      <!-- Show Table -->
+      <% if (locals.URLs) { %>
+      <div class="result">
+        <table>
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Short ID</th>
+              <th>Redirect URL</th>
+              <th>Clicks</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% URLs.forEach((item, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= item.shortId %></td>
+              <td>
+                <a href="/<%= item.shortId %>" target="_blank">
+                  <%= item.redirectUrl %>
+                </a>
+              </td>
+              <td><%= item.visitHistory.length %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>
