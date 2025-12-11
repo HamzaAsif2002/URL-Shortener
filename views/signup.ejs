@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+      .error {
+        color: red;
+        margin-bottom: 15px;
+      }
+      button {
+        padding: 10px 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Create an Account</h1>
+
+      <form action="/user" method="POST">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your full name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="passward">Password</label>
+          <input
+            type="password"
+            id="passward"
+            name="passward"
+            placeholder="Enter password"
+            required
+          />
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </body>
+</html>

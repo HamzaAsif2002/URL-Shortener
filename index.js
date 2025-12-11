@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const UrlRoutes = require("./routes/url");
+const UserRoutes = require("./routes/user");
 const Port = 8001;
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/", UrlRoutes);
+app.use("/user", UserRoutes);
 
 app.listen(Port, () => {
   console.log(`Server is starting at Port ${Port}`);
