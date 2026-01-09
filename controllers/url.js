@@ -17,11 +17,6 @@ const handleGenerateUrl = async (req, res) => {
   //   return res.json({ id: shortID });
 };
 
-const handleShowAllUrls = async (req, res) => {
-  const URLs = await URL.find({});
-  return res.render("home", { URLs });
-};
-
 const handleRedirectUrl = async (req, res) => {
   const shortId = req.params.id;
 
@@ -54,5 +49,4 @@ module.exports = {
   handleGenerateUrl,
   handleRedirectUrl,
   handleGetAnalytics,
-  handleShowAllUrls,
 };
