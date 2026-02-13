@@ -5,6 +5,9 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
+  const userUid = req.cookies.uuid;
+  if (!userUid) return res.render("home");
+
   const URLs = await URL.find({});
   return res.render("home", { URLs });
 });
